@@ -1,10 +1,10 @@
-﻿  Tester.cpp
+﻿  Camera.cpp
+  DOF.cpp
+  Joint.cpp
+  Model.cpp
+  Shader.cpp
+  Skeleton.cpp
+  SpinningCube.cpp
+  Tester.cpp
   Tokenizer.cpp
-LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Generating code
-  9 of 453 functions ( 2.0%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
-  Finished generating code
-glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE 169\Project0\Project0\Release\vc120.pdb'; linking object as if no debug info
-  cse169.vcxproj -> C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE 169\Project0\Project0\Release\cse169.exe
+LINK : fatal error LNK1181: cannot open input file 'freeglut.lib'
