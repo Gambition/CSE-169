@@ -11,14 +11,24 @@ int Skeleton::Load(const char* file)
 	t.Open(file);
 	root = new Joint();
 	root->parentJoint = NULL;
-
 	//load the skeleton
 	root->Load(t);
-
 	//close token 
 	t.Close();
+	this->setJoints(root);
 	return 1;
 }
+
+void Skeleton::setJoints(Joint * curr)
+{
+	this->joints.push_back(curr);
+	for (unsigned int i = 0; i < curr->children.size(); i++)
+	{
+		setJoints(curr->children[i]);
+	}
+}
+
+
 
 void Skeleton::Draw(const glm::mat4 &viewProjMtx, uint shader)
 {
@@ -29,6 +39,10 @@ Skeleton::Skeleton()
 {
 	
 }
+
+
+
+
 
 
 Skeleton::~Skeleton()
