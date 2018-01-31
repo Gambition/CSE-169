@@ -100,8 +100,13 @@ Tester::Tester(const char *windowTitle,int argc,char **argv) {
 	glewInit();
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
-	myScene = new Scene(argv[1], argv[2]);
-
+	if (argc <=1)
+	{
+		myScene = new Scene("wasp.skel", "wasp.skin");
+	}
+	else {
+		myScene = new Scene(argv[1], argv[2]);
+	}
 	int numJoints = myScene->getSkeleton()->joints.size()-1;
 
 	//Select Joint
