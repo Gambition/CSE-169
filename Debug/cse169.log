@@ -1,13 +1,2 @@
-﻿  Skin.cpp
-c:\users\chunc\desktop\peace\coursework\cse\cse 169\project0\project0\skin.cpp(24): warning C4018: '<': signed/unsigned mismatch
-c:\users\chunc\desktop\peace\coursework\cse\cse 169\project0\project0\skin.cpp(33): warning C4018: '<': signed/unsigned mismatch
-c:\users\chunc\desktop\peace\coursework\cse\cse 169\project0\project0\skin.cpp(43): warning C4018: '<': signed/unsigned mismatch
-c:\users\chunc\desktop\peace\coursework\cse\cse 169\project0\project0\skin.cpp(47): warning C4018: '<': signed/unsigned mismatch
-c:\users\chunc\desktop\peace\coursework\cse\cse 169\project0\project0\skin.cpp(59): warning C4018: '<': signed/unsigned mismatch
-c:\users\chunc\desktop\peace\coursework\cse\cse 169\project0\project0\skin.cpp(73): warning C4018: '<': signed/unsigned mismatch
-  Skeleton.cpp
-  Generating Code...
-  Compiling...
-  Tester.cpp
-  Generating Code...
-LINK : fatal error LNK1104: cannot open file 'freeglutd.lib'
+﻿  Tester.cpp
+  cse169.vcxproj -> C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE169\CSE-169\Debug\cse169.exe

@@ -10,6 +10,8 @@
 // Set up GLM
 #include "glm/glm.hpp"
 #include "glm/gtx/transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+#include "glm/gtx/quaternion.hpp"
 
 // Set up GLEW
 #define GLEW_STATIC
@@ -24,4 +26,6 @@ typedef unsigned int uint;
 
 // STD library
 #include <vector>
+#include <string>
 #include <ctype.h>
+

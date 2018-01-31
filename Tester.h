@@ -7,7 +7,7 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "SpinningCube.h"
-#include "Skeleton.h"
+#include "Scene.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -38,13 +38,11 @@ private:
 	int WinX,WinY;
 
 	// Input
-	bool LeftDown,MiddleDown,RightDown;
+	bool LeftDown,MiddleDown,RightDown; 
 	int MouseX,MouseY;
 
 	// Components
-	ShaderProgram *Program;
-	//SpinningCube *Cube;
-	Skeleton* mySkeleton;
+	Scene* myScene;
 	Camera *Cam;
 };
 

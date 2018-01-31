@@ -3,7 +3,7 @@
 ////////////////////////////////////////
 
 #pragma once
-
+#include <iostream>
 #include "Core.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,7 +29,9 @@ public:
 	float GetAzimuth()						{return Azimuth;}
 	float GetIncline()						{return Incline;}
 
-	const glm::mat4 &GetViewProjectMtx()	{return ViewProjectMtx;}
+	//const glm::mat4 &GetViewProjectMtx()	{return ViewProjectMtx;}
+	const glm::mat4 &GetViewMtx() { return View; }
+	const glm::mat4 &GetProjMtx() { return Projection; }
 
 private:
 	// Perspective controls
@@ -45,6 +47,8 @@ private:
 
 	// Computed data
 	glm::mat4 ViewProjectMtx;
+	glm::mat4 View;
+	glm::mat4 Projection;
 };
 
 ////////////////////////////////////////////////////////////////////////////////

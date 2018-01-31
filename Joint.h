@@ -8,10 +8,10 @@ class Joint
 private:
 	glm::mat4 worldMatrix;
 	glm::mat4 localMatrix;
-	std::vector<DOF*> DOFs;
-	
 
+	
 public:
+	std::vector<DOF*> DOFs;
 	Joint();
 	~Joint();
 	Model boxModel;
@@ -21,6 +21,7 @@ public:
 	DOF* rotxlimit;
 	DOF* rotylimit;
 	DOF* rotzlimit;
+	std::string jointName;
 	void setWorldMatrix(glm::mat4 w);
 	void setLocalMatrix(glm::mat4 l);
 	glm::mat4 getWorldMatrix();

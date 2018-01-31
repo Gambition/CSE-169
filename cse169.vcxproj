@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BMPImage.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DOF.cpp" />
     <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="Skin.cpp" />
@@ -31,20 +33,27 @@
     <ClCompile Include="Tokenizer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BMPImage.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="DOF.h" />
+    <ClInclude Include="image.h" />
     <ClInclude Include="Joint.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="Skin.h" />
     <ClInclude Include="SpinningCube.h" />
+    <ClInclude Include="stb_image.h" />
     <ClInclude Include="Tester.h" />
     <ClInclude Include="Tokenizer.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Model.glsl" />
     <None Include="packages.config" />
+    <None Include="shader.frag.glsl" />
+    <None Include="shader.vs.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{41B34E76-1F31-4835-8A87-F05EA3E9FA03}</ProjectGuid>
@@ -123,8 +132,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32s.lib;freeglutd.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE169\CSE-169\packages\freeglut.2.8.1.15\build\native\lib\v110\Win32\Debug\static;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32s.lib;freeglutd.lib;freeglut.lib;AntTweakBar.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE169\CSE-169\packages\AntTweakBar;C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE169\CSE-169\packages\freeglut.2.8.1.15\build\native\lib\v110\Win32\Debug\static;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

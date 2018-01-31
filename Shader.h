@@ -1,44 +1,16 @@
-////////////////////////////////////////
-// Shader.h
-////////////////////////////////////////
 
 #pragma once
-
 #include "Core.h"
 
-////////////////////////////////////////////////////////////////////////////////
-
-class Shader {
+class Shader
+{
 public:
-	enum ShaderType {eGeometry,eVertex,eFragment,eCompute};
+	GLuint Program;
+	Shader(const GLchar* vertexPath, const GLchar* fragmentPath, const GLchar* geometryPath = nullptr);
+	void Use()
+	{
+		glUseProgram(this->Program);
+	}
 
-	Shader(const char *filename,ShaderType type);
-	~Shader();
-
-	// Access functions
-	uint GetShaderID()				{return ShaderID;}
-
-private:
-	uint ShaderID;
 };
-
-////////////////////////////////////////////////////////////////////////////////
-
-class ShaderProgram {
-public:
-	enum ProgramType {eGeometry,eRender,eCompute};
-
-	ShaderProgram(const char *filename,ProgramType type);
-	~ShaderProgram();
-
-	// Access functions
-	uint GetProgramID() const				{return ProgramID;}
-
-private:
-	enum {eMaxShaders=3};
-	ProgramType Type;
-	Shader *Shaders[eMaxShaders];
-	uint ProgramID;
-};
-
 ////////////////////////////////////////////////////////////////////////////////

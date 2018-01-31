@@ -48,6 +48,10 @@ void Joint::addChild(Joint * child)
 
 void Joint::Load(Tokenizer & t)
 {
+	char name[256];
+	t.GetToken(name);
+	this->jointName = strdup(name);
+
 	t.FindToken("{");
 	while (1)
 	{
@@ -70,9 +74,15 @@ void Joint::Load(Tokenizer & t)
 		}
 		else if (strcmp(temp, "pose") == 0)
 		{
-			rotxlimit->setValue(t.GetFloat());
-			rotylimit->setValue(t.GetFloat());
-			rotzlimit->setValue(t.GetFloat());
+			float valueX = t.GetFloat();
+			float valueY = t.GetFloat();
+			float valueZ = t.GetFloat();
+			rotxlimit->setValue(valueX);
+			rotxlimit->setInitialValue(valueX);
+			rotylimit->setValue(valueY);
+			rotylimit->setInitialValue(valueY);
+			rotzlimit->setValue(valueZ);
+			rotzlimit->setInitialValue(valueZ);
 		}
 		else if (strcmp(temp, "rotxlimit") == 0)
 		{
@@ -90,12 +100,12 @@ void Joint::Load(Tokenizer & t)
 			this->rotzlimit->setMax(t.GetFloat());
 		}
 		else if (strcmp(temp, "balljoint") == 0)
-		{
+		{			
 			Joint* jnt = new Joint();
 			jnt->parentJoint = this;
 			jnt->Load(t);
 			this->addChild(jnt);
-
+		
 		}
 		else if (strcmp(temp, "}") == 0)
 		{

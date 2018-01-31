@@ -22,10 +22,16 @@ int Skeleton::Load(const char* file)
 void Skeleton::setJoints(Joint * curr)
 {
 	this->joints.push_back(curr);
+	this->jointNames.push_back(curr->jointName);
 	for (unsigned int i = 0; i < curr->children.size(); i++)
 	{
 		setJoints(curr->children[i]);
 	}
+}
+
+Joint * Skeleton::getRoot()
+{
+	return this->root;
 }
 
 
