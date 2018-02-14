@@ -143,8 +143,7 @@ void Joint::Update()
 
 	//set up cube box
 
-	this->boxModel.MakeBox(this->boxmin, this->boxmax);
-	
+	//this->boxModel.MakeBox(this->boxmin, this->boxmax);	
 	
 	//Perform same procedure for all the children current joint
 	for (unsigned int i = 0; i < this->children.size(); i++)

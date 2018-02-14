@@ -8,6 +8,8 @@
 #include "Camera.h"
 #include "SpinningCube.h"
 #include "Scene.h"
+#include "AnimationClip.h"
+#include <ctime>
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -44,6 +46,8 @@ private:
 	// Components
 	Scene* myScene;
 	Camera *Cam;
+	AnimationClip* myAnimation;
+
 };
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -1,2 +1,9 @@
-﻿  Tester.cpp
+﻿  Skin.cpp
+c:\users\chunc\desktop\peace\coursework\cse\cse169\cse-169\skin.cpp(3): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\chunc\desktop\peace\coursework\cse\cse169\cse-169\skin.cpp(43): warning C4018: '<': signed/unsigned mismatch
+c:\users\chunc\desktop\peace\coursework\cse\cse169\cse-169\skin.cpp(59): warning C4018: '<': signed/unsigned mismatch
+c:\users\chunc\desktop\peace\coursework\cse\cse169\cse-169\skin.cpp(65): warning C4018: '<': signed/unsigned mismatch
+c:\users\chunc\desktop\peace\coursework\cse\cse169\cse-169\skin.cpp(80): warning C4018: '<': signed/unsigned mismatch
+c:\users\chunc\desktop\peace\coursework\cse\cse169\cse-169\skin.cpp(109): warning C4018: '<': signed/unsigned mismatch
+c:\users\chunc\desktop\peace\coursework\cse\cse169\cse-169\skin.cpp(149): warning C4018: '<': signed/unsigned mismatch
   cse169.vcxproj -> C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE169\CSE-169\Debug\cse169.exe

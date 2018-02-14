@@ -250,8 +250,8 @@ void Skin::Draw(Shader & shader, glm::mat4 view, glm::mat4 proj)
 	glm::vec4 light1Pos = vec4(-6.0f, 3.0f, 0.0f, 0.0f);
 	glm::vec4 light2Pos = vec4(6.0f, 3.0f, 0.0f, 0.0f);
 
-	glm::vec4 light1Col = vec4(1.0f, 0.1f, 0.1f, 1.0f);
-	glm::vec4 light2Col = vec4(0.2f, 0.3f, 1.0f, 1.0f);
+	glm::vec4 light1Col = vec4(1.0f, 0.0f, 0.1f, 1.0f);
+	glm::vec4 light2Col = vec4(0.1f, 0.0f, 1.0f, 1.0f);
 	for (int i = 0; i < 4; i++)
 	{
 		positions[i] = light1Pos[i];

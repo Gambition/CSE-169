@@ -19,10 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationClip.cpp" />
     <ClCompile Include="BMPImage.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Channel.cpp" />
     <ClCompile Include="DOF.cpp" />
     <ClCompile Include="Joint.cpp" />
+    <ClCompile Include="Keyframe.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -33,12 +36,15 @@
     <ClCompile Include="Tokenizer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationClip.h" />
     <ClInclude Include="BMPImage.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Channel.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="DOF.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="Joint.h" />
+    <ClInclude Include="Keyframe.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />

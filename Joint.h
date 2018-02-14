@@ -9,7 +9,6 @@ private:
 	glm::mat4 worldMatrix;
 	glm::mat4 localMatrix;
 
-	
 public:
 	std::vector<DOF*> DOFs;
 	Joint();
