@@ -27,6 +27,7 @@
     <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Keyframe.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skeleton.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="Joint.h" />
     <ClInclude Include="Keyframe.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skeleton.h" />
