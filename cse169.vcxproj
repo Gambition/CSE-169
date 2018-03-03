@@ -23,6 +23,7 @@
     <ClCompile Include="BMPImage.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Channel.cpp" />
+    <ClCompile Include="Cloth.cpp" />
     <ClCompile Include="DOF.cpp" />
     <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Keyframe.cpp" />
@@ -33,14 +34,17 @@
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="Skin.cpp" />
     <ClCompile Include="SpinningCube.cpp" />
+    <ClCompile Include="SpringDamper.cpp" />
     <ClCompile Include="Tester.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
+    <ClCompile Include="triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClip.h" />
     <ClInclude Include="BMPImage.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Channel.h" />
+    <ClInclude Include="Cloth.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="DOF.h" />
     <ClInclude Include="image.h" />
@@ -53,9 +57,11 @@
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="Skin.h" />
     <ClInclude Include="SpinningCube.h" />
+    <ClInclude Include="SpringDamper.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Tester.h" />
     <ClInclude Include="Tokenizer.h" />
+    <ClInclude Include="triangle.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Model.glsl" />
