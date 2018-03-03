@@ -174,13 +174,16 @@ void Tester::Draw() {
 	{
 		int currTime = glutGet(GLUT_ELAPSED_TIME);
 		duration = currTime - startTime;
-		duration = duration % 4000;
+		//duration = duration % 4000;
 		this->myAnimation->Evaluate((float)duration / 1000, myScene->getSkeleton());
 	}
 	
 
 	//set up model matrix using GUI
-	myScene->getSkin()->model = glm::scale(glm::mat4(1.0f),glm::vec3(g_Zoom));
+	//myScene->getSkin()->model = myScene->getSkeleton()->getRoot()->getWorldMatrix()*myScene->getSkin()->model;
+	myScene->getSkin()->model = myScene->getSkeleton()->getRoot()->getWorldMatrix();
+	glm::mat4 scaling = glm::scale(glm::mat4(1.0f), glm::vec3(g_Zoom));
+	myScene->getSkin()->model = scaling * myScene->getSkin()->model;
 	glm::quat myQuat = glm::quat(g_Rotation[0], g_Rotation[1], g_Rotation[2], g_Rotation[3]);
 	glm::mat4 rotationMatrix = glm::toMat4(myQuat);
 	myScene->getSkin()->model = rotationMatrix * myScene->getSkin()->model;

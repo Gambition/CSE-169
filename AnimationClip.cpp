@@ -56,6 +56,7 @@ void AnimationClip::Evaluate(float Time, Skeleton * mySkeleton)
 
 	glm::mat4 rootMatrix = mySkeleton->getRoot()->getWorldMatrix();
 	rootMatrix = glm::translate(rootMatrix, glm::vec3(rootX, rootY, rootZ));
+
 	mySkeleton->getRoot()->setWorldMatrix(rootMatrix);
 
 	for (int i = 3; i < this->numChannels; i++) {

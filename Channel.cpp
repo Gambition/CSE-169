@@ -142,13 +142,7 @@ void Channel::calculateCoeff(Keyframe* first, Keyframe* second) {
 	float p1 = second->Value;
 	float v0 = (t1 - t0)*first->TangentOut;
 	float v1 = (t1 - t0)*second->TangentIn;
-	
-	//mat4 temp = mat4(2, -3, 0, 1, -2, 3, 0, 0, 1, -2, 1, 0, 1, -1, 0, 0);
-	//vec4 result = temp * vec4(po, p1, v0, v1);
-	//first->A = result[0];
-	//first->B = result[1];
-	//first->C = result[2];
-	//first->D = result[3];
+
 	first->A = (2 * p0) - (2 * p1) + v0 + v1;
 	first->B = (-3 * p0) + (3 * p1) + (-2 * v0) - v1;
 	first->C = v0;
@@ -216,8 +210,22 @@ float Channel::extrapolate(float t) {
 			float t1 = keyFrames[numKeyframes - 1]->Time;
 			int numCycles = ceil((t0 - t) / (t1 - t0));
 			float convertedTime = t + numCycles * (t1 - t0);
-			float valueDiff = keyFrames[numKeyframes - 1] - keyFrames[0];
+			float valueDiff = keyFrames[numKeyframes - 1]->Value - keyFrames[0]->Value;
 			return Evaluate(convertedTime) - valueDiff * numCycles;
+		}
+		else if (strcmp(extraIn, "bounce") == 0) {
+			float t0 = keyFrames[0]->Time;
+			float t1 = keyFrames[numKeyframes - 1]->Time;
+			int numCycles = ceil((t0 - t) / (t1 - t0));
+			float convertedTime = t + numCycles * (t1 - t0);
+			if (numCycles % 2 == 0)
+			{
+				return Evaluate(convertedTime);
+			}
+			else {
+				return Evaluate(t1 - convertedTime);
+			}
+
 		}
 	}
 	//after the last key
@@ -244,9 +252,23 @@ float Channel::extrapolate(float t) {
 			float t1 = keyFrames[numKeyframes - 1]->Time;
 			int numCycles = ceil((t - t1) / (t1 - t0));
 			float convertedTime = t - numCycles * (t1 - t0);
-			float valueDiff = keyFrames[numKeyframes - 1] - keyFrames[0];
+			float valueDiff = keyFrames[numKeyframes - 1]->Value - keyFrames[0]->Value;
 			return Evaluate(convertedTime) + valueDiff * numCycles;
 		}
+		else if (strcmp(extraOut, "bounce") == 0) {
+			float t0 = keyFrames[0]->Time;
+			float t1 = keyFrames[numKeyframes - 1]->Time;
+			int numCycles = ceil((t - t1) / (t1 - t0));
+			float convertedTime = t - numCycles * (t1 - t0);
+			if (numCycles % 2 == 0)
+			{
+				return Evaluate(convertedTime);
+			}
+			else {
+				return Evaluate(t1 - convertedTime);
+			}
+		}
+
 	}
 
 }
