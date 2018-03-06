@@ -1,1 +1,10 @@
-﻿LINK : fatal error LNK1181: cannot open input file 'freeglut.lib'
+﻿  Tester.cpp
+LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
+  Generating code
+c:\users\chunc\desktop\peace\coursework\cse\cse 169\project0\project0\cse-169\plane.cpp(29): warning C4715: 'Plane::TestSegment': not all control paths return a value
+  22 of 714 functions ( 3.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    3 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE 169\Project0\Project0\CSE-169\Release\vc120.pdb'; linking object as if no debug info
+  cse169.vcxproj -> C:\Users\chunc\Desktop\Peace\Coursework\CSE\CSE 169\Project0\Project0\CSE-169\Release\cse169.exe

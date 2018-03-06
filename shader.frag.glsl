@@ -17,6 +17,7 @@ in vec2 TexCoords;
 
 out vec4 fragColor;
 
+uniform int plane;
 uniform int hasTexture;
 uniform sampler2D tex;
 uniform mat4 modelview;
@@ -38,7 +39,6 @@ uniform vec4 lightColor[2];
 
 void main()
 {
-
   	vec4 finalColor = vec4(0.0f,0.0f,0.0f,0.0f);
 	const vec3 eyepos = vec3(0,0,0);
 	vec4 _mypos = modelview * myvertex;
@@ -85,5 +85,4 @@ void main()
 	else{
 		fragColor = finalColor;
 	}
-	
 } 

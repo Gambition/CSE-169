@@ -1,22 +1,33 @@
 #pragma once
-#include "Skin.h"
-#include "Skeleton.h"
-
+#include "Cloth.h"
+#include "Shader.h"
 
 class Scene
 {
-private:
-	Skeleton * mySkeleton = new Skeleton();
-	Skin* mySkin = new Skin();
-	Shader shader = Shader("shader.vs.glsl", "shader.frag.glsl");
+	
 public:
+	float clothWidth;
+	float clothHeight;
+	Cloth * myCloth;
 	Scene();
-	Scene(const char* skeletonFile, const char* skinFile);
-	void Draw(const glm::mat4 &viewProjMtx, uint shader);
+	Scene(int width,int height);
 	void render(const glm::mat4 view, glm::mat4 proj);
-	Skin* getSkin() { return mySkin; }
-	Skeleton* getSkeleton() { return mySkeleton; }
 	~Scene();
+	Shader shader = Shader("shader.vs.glsl", "shader.frag.glsl");
+	Shader planeShader = Shader("shader.vs.glsl", "plane.frag.glsl");
+	GLuint planeVAO, planeVBO;
+	vector<GLfloat> planeVertices = {
+		// positions            // normals         // texcoords
+		10.0f, -1.5f,  10.0f,  0.0f, 1.0f, 0.0f,  20.0f,  0.0f,
+		-10.0f, -1.5f,  10.0f,  0.0f, 1.0f, 0.0f,   0.0f,  0.0f,
+		-10.0f, -1.5f, -10.0f,  0.0f, 1.0f, 0.0f,   0.0f, 20.0f,
 
+		10.0f, -1.5f,  10.0f,  0.0f, 1.0f, 0.0f,  20.0f,  0.0f,
+		-10.0f, -1.5f, -10.0f,  0.0f, 1.0f, 0.0f,   0.0f, 25.0f,
+		10.0f, -1.5f, -10.0f,  0.0f, 1.0f, 0.0f,  20.0f, 20.0f
+	};
+	mat4 planeModel = mat4(1.0f);
+	void setupPlane();
+	void drawPlane(const glm::mat4 view, glm::mat4 proj);
 };
 

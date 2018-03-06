@@ -13,8 +13,6 @@ public:
 	float density;
 	float drag;
 	
-
-
 	triangle(Particle* p1, Particle* p2, Particle* p3);
 	triangle();
 

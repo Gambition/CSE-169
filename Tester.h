@@ -7,9 +7,8 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "SpinningCube.h"
-#include "Scene.h"
-#include "AnimationClip.h"
 #include <ctime>
+#include "Scene.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -33,6 +32,7 @@ public:
 	void Keyboard(int key,int x,int y);
 	void MouseButton(int btn,int state,int x,int y);
 	void MouseMotion(int x,int y);
+	void specialKeys(int key, int x, int y);
 
 private:
 	// Window management
@@ -46,8 +46,7 @@ private:
 	// Components
 	Scene* myScene;
 	Camera *Cam;
-	AnimationClip* myAnimation;
-
+	
 };
 
 ////////////////////////////////////////////////////////////////////////////////

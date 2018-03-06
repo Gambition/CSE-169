@@ -29,6 +29,7 @@
     <ClCompile Include="Keyframe.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skeleton.cpp" />
@@ -52,6 +53,7 @@
     <ClInclude Include="Keyframe.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Particle.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skeleton.h" />
@@ -66,6 +68,7 @@
   <ItemGroup>
     <None Include="Model.glsl" />
     <None Include="packages.config" />
+    <None Include="plane.frag.glsl" />
     <None Include="shader.frag.glsl" />
     <None Include="shader.vs.glsl" />
   </ItemGroup>

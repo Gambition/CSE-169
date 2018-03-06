@@ -28,4 +28,5 @@ typedef unsigned int uint;
 #include <vector>
 #include <string>
 #include <ctype.h>
+#include <iostream>
 

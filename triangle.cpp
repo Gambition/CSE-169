@@ -10,12 +10,14 @@ triangle::triangle(Particle * p1, Particle * p2, Particle * p3)
 	this->p1 = p1;
 	this->p2 = p2;
 	this->p3 = p3;
+	this->density = 1.225;
+	this->drag = 1.0f;
 	computeNormal();
 }
 
 void triangle::computeNormal()
 {
-	vec3 n = cross((p1->pos - p2->pos), (p2->pos-p3->pos));
+	vec3 n = cross((p2->pos - p1->pos), (p3->pos-p2->pos));
 	this->normal = normalize(n);
 }
 
@@ -26,10 +28,11 @@ void triangle::calculateForce(vec3 airVelocity)
 	vec3 v = velocity - airVelocity;
 
 	//calcuate area
-	vec3 n = cross((p1->pos - p2->pos), (p2->pos - p3->pos));
+	vec3 n = cross((p2->pos - p1->pos), (p3->pos - p2->pos));
 	float a = 0.5f*length(n);
-	a = a * dot(v, normal) / length(v);
 
+	a = a * dot(v, n) / length(v);
+	//cout << dot(v,n) << endl;
 	//calulate areodynamic force
 	vec3 force = -0.5f*density*pow(length(v), 2)*drag*a*normal;
 	vec3 forceSplit = force / 3.0f;
