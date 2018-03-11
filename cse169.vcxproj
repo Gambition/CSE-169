@@ -25,6 +25,7 @@
     <ClCompile Include="Channel.cpp" />
     <ClCompile Include="Cloth.cpp" />
     <ClCompile Include="DOF.cpp" />
+    <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Joint.cpp" />
     <ClCompile Include="Keyframe.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -34,11 +35,13 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skeleton.cpp" />
     <ClCompile Include="Skin.cpp" />
+    <ClCompile Include="SPHParticle.cpp" />
     <ClCompile Include="SpinningCube.cpp" />
     <ClCompile Include="SpringDamper.cpp" />
     <ClCompile Include="Tester.cpp" />
     <ClCompile Include="Tokenizer.cpp" />
     <ClCompile Include="triangle.cpp" />
+    <ClCompile Include="Water.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimationClip.h" />
@@ -48,6 +51,7 @@
     <ClInclude Include="Cloth.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="DOF.h" />
+    <ClInclude Include="Grid.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="Joint.h" />
     <ClInclude Include="Keyframe.h" />
@@ -58,12 +62,14 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skeleton.h" />
     <ClInclude Include="Skin.h" />
+    <ClInclude Include="SPHParticle.h" />
     <ClInclude Include="SpinningCube.h" />
     <ClInclude Include="SpringDamper.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Tester.h" />
     <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="triangle.h" />
+    <ClInclude Include="Water.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Model.glsl" />
