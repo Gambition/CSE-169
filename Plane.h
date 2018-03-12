@@ -17,6 +17,7 @@ public:
 
 	Plane();
 	Plane(vec3 p);
+	Plane(vec3 p, vec3 n);
 	bool TestSegment(segment &s, intersection &i);
 	~Plane();
 };

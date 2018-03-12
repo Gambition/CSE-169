@@ -15,6 +15,12 @@ Plane::Plane(vec3 p)
 	normal = vec3(0.0f, 1.0f, 0.0f);
 }
 
+Plane::Plane(vec3 p, vec3 n) 
+{
+	point = p;
+	normal = n;
+}
+
 bool Plane::TestSegment(segment & s, intersection & i)
 {
 	float da = dot((s.A - point), normal);

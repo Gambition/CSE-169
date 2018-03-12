@@ -13,6 +13,7 @@ Water::Water(int n)
 	this->grid = new Grid(10, this->support);
 	this->k = 0.0f;
 	this->restDensity = 0.0f;
+	this->v = 0.0f;
 
 }
 
@@ -37,15 +38,36 @@ void Water::initialize()
 			{
 				SPHParticle* p = new SPHParticle();
 				p->center = vec3(x, y, z);
+				p->prevPos = vec3(x, y, z);
 				p->density = this->density;
 				this->particles.push_back(p);
 			}
 		}
 	}
+
+	//set up the box for collision detection and replusion forces
+	Plane* ground = new Plane(vec3(0.0f,-2.0f,0.0f), vec3(0.0f, 1.0f, 0.0f));
+	Plane* leftWall = new Plane(vec3(-2.0f, 0.0f, 0.0f), vec3(1.0f, 0.0f, 0.0f));
+	Plane* rightWall = new Plane(vec3(2.0f, 0.0f, 0.0f), vec3(-1.0f, 0.0f, 0.0f));
+	Plane* frontWall = new Plane(vec3(0.0f, 0.0f, 2.0f), vec3(0.0f, 0.0f, -1.0f));
+	Plane* backWall = new Plane(vec3(0.0f, 0.0f, -2.0f), vec3(1.0f, 0.0f, 1.0f));
+	this->walls.push_back(ground);
+	this->walls.push_back(leftWall);
+	this->walls.push_back(rightWall);
+	this->walls.push_back(frontWall);
+	this->walls.push_back(backWall);
+
 }
 
 void Water::update(float dt)
 {
+	this->updateGrid();
+	for (SPHParticle* p : this->particles) {
+		this->findNeightbors(p);
+	}
+	this->computeDensityAndPressure();
+	this->computeForces();
+
 }
 
 
@@ -96,6 +118,8 @@ void Water::findNeightbors(SPHParticle * p)
 		int gridX = floor((pos.x + (grid->size) / 2.0f) / support);
 		int gridY = floor((pos.y + (grid->size) / 2.0f) / support);
 		int gridZ = floor((pos.z + (grid->size) / 2.0f) / support);
+		
+		//loop through 27 cells
 		for (int i = gridX - 1; i < gridX + 1; i++)
 		{
 			if (i < 0) continue;
@@ -155,17 +179,89 @@ void Water::computeDensityAndPressure()
 void Water::computeForces()
 {
 	for (SPHParticle*p : this->particles) {
+		vec3 pressure = vec3(0.0f);
+		vec3 viscosity = vec3(0.0f);
 		for (SPHParticle*n : p->neighbors) {
+			vec3 dist = n->center - p->center;
+			vec3 vDiff = p->velocity - n->velocity;
+			float d = length(dist);
+			vec3 Wgrad = this->W(d)*normalize(dist);
 
+			//calculate pressure
+			pressure += (n->mass)*((p->pressure / (pow(p->density, 2))) + (n->pressure / (pow((n->density), 2))))*Wgrad;
+			
+			//calculate viscosity
+			float temp = dot(dist,Wgrad) / (dot(dist, dist) + 0.01f*pow(smooth, 2));
+			viscosity += (n->mass / n->density)*vDiff*temp;
 		}
+		pressure = -1.0f*p->mass*pressure;
+		viscosity = p->mass*this->v*2.0f*viscosity;
+
+		//apply all three forces
+		p->applyForce(pressure);
+		p->applyForce(viscosity);
+		vec3 gravity = p->mass*vec3(0.0f, -9.8f, 0.0f);
+		p->applyForce(gravity);
 	}
 
 }
 
+void Water::collisionDetection()
+{
+	float elasticity = 0.0f;
+	float friction = 0.0f;
+	for (SPHParticle* p : particles)
+	{
+		for (Plane* wall : walls)
+		{
+			segment s;
+			intersection inter;
+			s.A = p->prevPos;
+			s.B = p->center;
+			if (wall->TestSegment(s, inter)) {
+				vec3 v = p->velocity;
+				vec3 position = p->center;
+				//ground plane
+				if (wall->normal == vec3(0.0f, 1.0f, 0.0f)) {
+					position.y = 2.0f*wall->point.y - position.y;
+					p->center = position;
+					p->velocity.x = (1.0f - friction)*p->velocity.x;
+					p->velocity.z = (1.0f - friction)*p->velocity.z;
+				}
+				//left wall
+				else if (wall->normal == vec3(1.0f, 0.0f, 0.0f)) {
+					position.x = 2.0f*wall->point.x - position.x;
+					p->center = position;
+					p->velocity.y = (1.0f - friction)*p->velocity.y;
+					p->velocity.z = (1.0f - friction)*p->velocity.z;
+				}
+				//right wall
+				else if (wall->normal == vec3(-1.0f, 0.0f, 0.0f)) {
+					position.x = 2.0f*wall->point.x - position.x;
+					p->center = position;
+					p->velocity.y = (1.0f - friction)*p->velocity.y;
+					p->velocity.z = (1.0f - friction)*p->velocity.z;
+				}
+				//front wall
+				else if (wall->normal == vec3(0.0f, 0.0f, -1.0f)) {
+					position.z = 2.0f*wall->point.z - position.z;
+					p->center = position;
+					p->velocity.x = (1.0f - friction)*p->velocity.x;
+					p->velocity.y = (1.0f - friction)*p->velocity.y;
+				}
+				//back wall
+				else if (wall->normal == vec3(-1.0f, 0.0f, 0.0f)) {
+					position.z = 2.0f*wall->point.z - position.z;
+					p->center = position;
+					p->velocity.x = (1.0f - friction)*p->velocity.x;
+					p->velocity.y = (1.0f - friction)*p->velocity.y;
+				}
+			}
+			p->prevPos = p->center;
+		}
+	}
 
-
-
-
+}
 
 
 Water::~Water()
