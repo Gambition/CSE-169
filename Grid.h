@@ -8,12 +8,14 @@ public:
 	int xcells;
 	int ycells;
 	int zcells;
-	int size;
+	int numcell;
+	float halfDomain;
+	float domain;
 	vector<vector<SPHParticle*>> entries;
 	void addParticles(SPHParticle*, float x,float y,float z);
 	void empty();
 	Grid();
-	Grid(int size, float sR);
+	Grid(float size, float sR);
 	~Grid();
 };
 

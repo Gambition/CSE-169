@@ -8,7 +8,8 @@
 #include "Camera.h"
 #include "SpinningCube.h"
 #include <ctime>
-#include "Scene.h"
+//#include "Scene.h"
+#include "Water.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -42,9 +43,9 @@ private:
 	// Input
 	bool LeftDown,MiddleDown,RightDown; 
 	int MouseX,MouseY;
-
 	// Components
-	Scene* myScene;
+	//Scene* myScene;
+	Water* myWater;
 	Camera *Cam;
 	
 };

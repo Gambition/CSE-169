@@ -17,12 +17,11 @@ int main(int argc, char **argv) {
 	return 0;
 }
 
-vec3 air = vec3(0.0f,0.0f,0.01f);
-vec3 translatation = vec3(0.0f, 0.0f, 0.0f);
 int rowIndex = 0;
 int columnIndex = 0;
 int width;
 int height;
+int update = 0;
 ////////////////////////////////////////////////////////////////////////////////
 
 // These are really HACKS to make glut call member functions instead of static functions
@@ -66,12 +65,12 @@ Tester::Tester(const char *windowTitle,int argc,char **argv) {
 	glutSpecialFunc(specialkeys);
 	glewInit();
 	glEnable(GL_DEPTH_TEST);
+
+	myWater = new Water(700);
+	myWater->initialize();
+	myWater->setup();
 	
-	width = atoi(argv[1]);
-	height = atoi(argv[2]);
-	myScene = new Scene(width, height);
-	myScene->myCloth->Vair = air;
-	myScene->myCloth->fixRow(0);
+
 	Cam=new Camera;
 	Cam->SetAspect(float(WinX)/float(WinY));
 }
@@ -80,7 +79,7 @@ Tester::Tester(const char *windowTitle,int argc,char **argv) {
 
 Tester::~Tester() {
 
-	delete myScene;
+	delete myWater;
 	delete Cam;
 	
 
@@ -93,10 +92,10 @@ Tester::~Tester() {
 void Tester::Update() {
 	// Update the components in the world
 	Cam->Update();
-	myScene->myCloth->update();
-	myScene->myCloth->setupMesh();
-	myScene->myCloth->Vair = air;
-	
+	if (update == 1)
+	{
+		myWater->update(0.08);
+	}
 	// Tell glut to re-display the scene
 	glutSetWindow(WindowHandle);
 	glutPostRedisplay();
@@ -105,8 +104,9 @@ void Tester::Update() {
 ////////////////////////////////////////////////////////////////////////////////
 
 void Tester::Reset() {
-	myScene->myCloth->reset();
-	Cam->Reset();
+	myWater->reset();
+	//Cam->Reset();
+	update = 0;
 	Cam->SetAspect(float(WinX)/float(WinY));
 }
 
@@ -118,7 +118,7 @@ void Tester::Draw() {
 	glViewport(0, 0, WinX, WinY);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glDisable(GL_CULL_FACE);
-	myScene->render(Cam->GetViewMtx(), Cam->GetProjMtx());
+	myWater->render(Cam->GetViewMtx(),Cam->GetProjMtx());
 	// Finish drawing scene
 	glFinish();
 	glutSwapBuffers();
@@ -151,16 +151,11 @@ void Tester::Keyboard(int key,int x,int y) {
 		case 'r':
 			Reset();
 			break;
-		case 'w':
-			if (air.z <= 70.0f) {
-				air.z += 5.0f;
-			}
+		case 'g':
+			//myWater->update(0.005f);
+			update = 1;
 			break;
-		case 's':
-			if (air.z >= 0.0f) {
-				air.z -= 5.0f;
-			}
-			break;
+		
 	}
 
 
@@ -169,26 +164,26 @@ void Tester::Keyboard(int key,int x,int y) {
 
 void Tester::specialKeys(int key, int x, int y)
 {
-	switch (key) {
-	case GLUT_KEY_LEFT:
-		//translatation.x = 0.01f;
-		myScene->myCloth->adjust(vec3(0.1f, 0.0f, 0.0f));
-		break;
-	case GLUT_KEY_RIGHT:
-		//translatation.x = -0.01f;
-		myScene->myCloth->adjust(vec3(-0.1f, 0.0f, 0.0f));
-		break;
+	//switch (key) {
+	//case GLUT_KEY_LEFT:
+	//	//translatation.x = 0.01f;
+	//	myScene->myCloth->adjust(vec3(0.1f, 0.0f, 0.0f));
+	//	break;
+	//case GLUT_KEY_RIGHT:
+	//	//translatation.x = -0.01f;
+	//	myScene->myCloth->adjust(vec3(-0.1f, 0.0f, 0.0f));
+	//	break;
 
-	case GLUT_KEY_UP:
-		//translatation.y = 0.01f;
-		myScene->myCloth->adjust(vec3(0.0f, 0.1f, 0.0f));
-		break;
+	//case GLUT_KEY_UP:
+	//	//translatation.y = 0.01f;
+	//	myScene->myCloth->adjust(vec3(0.0f, 0.1f, 0.0f));
+	//	break;
 
-	case GLUT_KEY_DOWN:
-		//translatation.y = -0.01f;
-		myScene->myCloth->adjust(vec3(0.0f, -0.1f, 0.0f));
-		break;
-	}
+	//case GLUT_KEY_DOWN:
+	//	//translatation.y = -0.01f;
+	//	myScene->myCloth->adjust(vec3(0.0f, -0.1f, 0.0f));
+	//	break;
+	//}
 
 }
 

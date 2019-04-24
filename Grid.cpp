@@ -6,6 +6,7 @@ void Grid::addParticles(SPHParticle *particle,float x,float y,float z)
 {
 	int cellNumber = x + y * xcells + z * xcells*ycells;
 	entries[cellNumber].push_back(particle);
+	
 }
 
 void Grid::empty()
@@ -14,7 +15,7 @@ void Grid::empty()
 	{
 		this->entries[i].clear();
 	}
-
+	
 }
 
 Grid::Grid()
@@ -24,16 +25,18 @@ Grid::Grid()
 	zcells = 0;
 }
 
-Grid::Grid(int size,float sR)
+Grid::Grid(float size,float sR)
 {
-	this->xcells = size;
-	this->ycells = size;
-	this->zcells = size;
-
-	entries.reserve(xcells*ycells*zcells);
+	this->domain = size;
+	this->halfDomain = domain * 0.5f;
+	this->numcell = size / sR;
+	this->xcells = numcell;
+	this->ycells = numcell;
+	this->zcells = numcell;
+	
+	entries.resize(xcells*ycells*zcells);
+	
 }
-
-
 
 Grid::~Grid()
 {
